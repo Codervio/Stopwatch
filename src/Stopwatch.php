@@ -2,9 +2,11 @@
 
 namespace Codervio\Stopwatch;
 
-use Codervio\Stopwatch\StopwatchTypeInterface;
+use Codervio\Stopwatch\StopwatchtypeInterface;
+use ReflectionClass;
+use ReflectionException;
 
-class Stopwatch implements StopwatchTypeInterface
+class Stopwatch implements StopwatchtypeInterface
 {
     protected static $delta = 19;
 
@@ -78,7 +80,7 @@ class Stopwatch implements StopwatchTypeInterface
 
     private function getTimeTypeValue()
     {
-        $constants = new ReflectionClass('StopwatchTypeInterface');
+        $constants = new ReflectionClass(StopwatchtypeInterface::class);
 
         $key = array_search($this->getTimeType(), $constants->getConstants());
 
