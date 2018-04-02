@@ -1,0 +1,34 @@
+{
+  "name": "codervio/stopwatch",
+  "type": "library",
+  "description": "Codervio Stopwatch",
+  "keywords": ["stopwatch", "environment", "php", "framework", "dev-tools"],
+  "homepage": "http://codervio.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marin Sagovac",
+      "email": "marin@sagovac.com"
+    },
+    {
+      "name": "Codervio Community",
+      "homepage": "http://codervio.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Codervio\\Stopwatch\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Codervio\\Stopwatch\\": "test/"
+    }
+  }
+}
