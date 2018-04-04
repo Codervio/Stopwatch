@@ -2,7 +2,7 @@
 
 namespace Codervio\Stopwatch;
 
-interface StopwatchTypeInterface
+interface StopwatchformatInterface
 {
     const SECONDS = 1;
     const MILLISECONDS = 2;

@@ -2,11 +2,11 @@
 
 namespace Codervio\Stopwatch;
 
-use Codervio\Stopwatch\StopwatchtypeInterface;
+use Codervio\Stopwatch\StopwatchformatInterface;
 use ReflectionClass;
 use ReflectionException;
 
-class Stopwatch implements StopwatchtypeInterface
+class Stopwatch implements StopwatchformatInterface
 {
     protected static $delta = 19;
 
@@ -80,14 +80,14 @@ class Stopwatch implements StopwatchtypeInterface
 
     private function getTimeTypeValue()
     {
-        $constants = new ReflectionClass(StopwatchtypeInterface::class);
+        $constants = new ReflectionClass(StopwatchformatInterface::class);
 
         $key = array_search($this->getTimeType(), $constants->getConstants());
 
         return $key;
     }
 
-    public function start($eventName = null)
+    public function start(?string $eventName = null)
     {
         if (is_null($eventName)) {
             $this->hashId = $eventName = 'event_' . static::$cnt++;
@@ -98,7 +98,7 @@ class Stopwatch implements StopwatchtypeInterface
         $this->stopwatch->start($this->getTime(), $eventName);
     }
 
-    public function stop($eventName = null)
+    public function stop(?string $eventName = null)
     {
         if (is_null($eventName)) {
             $eventName = $this->hashId;
@@ -111,7 +111,7 @@ class Stopwatch implements StopwatchtypeInterface
         return $this->stopwatch->stop($this->getTime(), $eventName);
     }
 
-    public function next($eventName = null)
+    public function next(?string $eventName = null)
     {
         if (is_null($eventName)) {
             $eventName = $this->hashId;
@@ -128,7 +128,7 @@ class Stopwatch implements StopwatchtypeInterface
         $this->stopwatch->start($this->getTime(), $eventName);
     }
 
-    public function pause($eventName = null)
+    public function pause(?string $eventName = null)
     {
         if (is_null($eventName)) {
             $this->hashId = $eventName = 'eventpause_' . static::$cnt++;
@@ -139,7 +139,7 @@ class Stopwatch implements StopwatchtypeInterface
         $this->stopwatch->pause($this->getTime(), $eventName);
     }
 
-    public function unpause($eventName = null)
+    public function unpause(?string $eventName = null)
     {
         // add in a total time += current - time from pause
 
@@ -156,7 +156,6 @@ class Stopwatch implements StopwatchtypeInterface
 
     public function getDuration($eventName = null)
     {
-
         return $this->stopwatch->getDuration($eventName);
     }
 

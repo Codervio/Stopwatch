@@ -16,6 +16,9 @@ class Event
     {
         $this->taskName = $eventName;
 
+        $this->eventconsume[$eventName]['duration'] = 0;
+        $this->eventconsume[$eventName]['type'] = 'runned';
+
         $this->event[$eventName]['start'] = $time;
         time_nanosleep(0, 1);
 
@@ -40,6 +43,10 @@ class Event
     public function pause($time, $eventName)
     {
         $this->event[$eventName]['start'] = $time;
+
+        $this->eventconsume[$eventName]['duration'] = 0;
+        $this->eventconsume[$eventName]['type'] = 'pause';
+
         time_nanosleep(0, 1);
 
         return $this;
