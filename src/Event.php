@@ -121,4 +121,9 @@ class Event
 
         return $collects;
     }
+
+    public function getEvent($eventName)
+    {
+        return $this->eventconsume[$eventName]['duration'];
+    }
 }

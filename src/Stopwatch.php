@@ -39,6 +39,11 @@ class Stopwatch implements StopwatchformatInterface
         $this->stopwatch = new Event;
     }
 
+    public function getEvent($eventName)
+    {
+        return $this->stopwatch->getEvent($eventName);
+    }
+
     protected function getTimeType()
     {
         return $this->typeTime;
