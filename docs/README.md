@@ -1,5 +1,8 @@
 # Stopwatch
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/codervio/stopwatch.svg?style=flat-square)](https://packagist.org/packages/codervio/stopwatch)
+[![Build Status](https://travis-ci.org/Codervio/Stopwatch.svg?branch=master)](https://travis-ci.org/Codervio/Stopwatch)
+
 A `Stopwatch` measures consumption time of executed scripts in micro/nano/mill seconds format. 
 It includes `pause` event to freeze consumption time.
 A stopwatch time can be named as event stopwatch name.
