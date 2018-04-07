@@ -22,7 +22,7 @@ script:
   - ls $TRAVIS_BUILD_DIR
   - ls $TRAVIS_BUILD_DIR/Tests
   - ls $TRAVIS_BUILD_DIR/vendor/bin/phpunit
-  - $TRAVIS_BUILD_DIR/vendor/bin/phpunit $TRAVIS_BUILD_DIR/Tests/EnvparserTest.php --coverage-clover=coverage.xml
+  - $TRAVIS_BUILD_DIR/vendor/bin/phpunit $TRAVIS_BUILD_DIR/Tests/StopwatchTest.php --coverage-clover=coverage.xml
 
 notifications:
   email: false
