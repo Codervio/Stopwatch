@@ -26,7 +26,7 @@ class Stopwatch implements StopwatchformatInterface
 
     private static $cnt = 1;
 
-    public function __construct($name = '', $typeTime = 1)
+    public function __construct($name = null, $typeTime = StopwatchformatInterface::MILLISECONDS)
     {
         $this->typeTime = $typeTime;
 
@@ -152,7 +152,9 @@ class Stopwatch implements StopwatchformatInterface
 
     public function getDuration($eventName = null)
     {
-        return $this->stopwatch->getDuration($eventName);
+        $duration = round($this->stopwatch->getDuration($eventName), 2);
+
+        return number_format($duration, 0, '.', '');
     }
 
     public function getTimeBorn()
