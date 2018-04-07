@@ -2,8 +2,8 @@
 
 namespace Codervio\Stopwatch;
 
-use Codervio\Stopwatch\StopwatchformatInterface;
 use Codervio\Stopwatch\Exception\EventException;
+use Codervio\Stopwatch\StopwatchformatInterface;
 use ReflectionClass;
 use ReflectionException;
 
@@ -110,9 +110,9 @@ class Stopwatch implements StopwatchformatInterface
             $eventName = $this->hashId;
         }
 
-        //if (!isset($this->time)) {
-        //    throw new \LogicException(sprintf('Stopwatch is not started. Use start() function before stop() function.'));
-        //}
+        if (!$this->stopwatch->eventCheck($eventName)) {
+            throw new EventException(sprintf("Event '%s' does not started. Add start() event", $eventName));
+        }
 
         return $this->stopwatch->stop($this->getTime(), $eventName);
     }
@@ -168,24 +168,6 @@ class Stopwatch implements StopwatchformatInterface
     public function getTimeBorn()
     {
         return $this->stopwatch->getTimeBorn();
-    }
-
-    public function diff($eventFrom, $eventTo)
-    {
-        if ($eventFrom == $eventTo) {
-            throw new EventException(sprintf('eventFrom and eventTo arguments should not be same. First input: %s, second input: %s', $eventFrom, $eventTo));
-        }
-
-        $eventStart = $this->stopwatch->getDuration($eventFrom);
-        $eventStop = $this->stopwatch->getDuration($eventTo);
-
-        if ($eventStart < $eventStop) {
-            return $eventStop - $eventStart;
-        }
-
-        if ($eventStart > $eventStop) {
-            return $eventStart - $eventStop;
-        }
     }
 
     public function getPrettyPrint()
