@@ -32,6 +32,19 @@ class EventConsume
 
     public function isStopped()
     {
-        return (isset($this->event['stop']));
+        try {
+            return ((isset($this->event['stop'])));
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function isStarted()
+    {
+        try {
+            return ((isset($this->event['start'])));
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

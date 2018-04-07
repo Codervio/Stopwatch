@@ -6,6 +6,7 @@ use Codervio\Stopwatch\Exception\EventException;
 use Codervio\Stopwatch\StopwatchformatInterface;
 use ReflectionClass;
 use ReflectionException;
+use Codervio\Stopwatch\StopwatchRender;
 
 class Stopwatch implements StopwatchformatInterface
 {
@@ -84,15 +85,6 @@ class Stopwatch implements StopwatchformatInterface
         return microtime(true) * $this->baseDelta;
     }
 
-    private function getTimeTypeValue()
-    {
-        $constants = new ReflectionClass(StopwatchformatInterface::class);
-
-        $key = array_search($this->getTimeType(), $constants->getConstants());
-
-        return $key;
-    }
-
     public function start(?string $eventName = null)
     {
         if (is_null($eventName)) {
@@ -147,15 +139,13 @@ class Stopwatch implements StopwatchformatInterface
 
     public function unpause(?string $eventName = null)
     {
-        // add in a total time += current - time from pause
-
         if (is_null($eventName)) {
             $eventName = $this->hashId;
         }
 
-        //if (!isset($this->time)) {
-        //    throw new \LogicException(sprintf('Stopwatch is not started. Use start() function before stop() function.'));
-        //}
+        if (!$this->stopwatch->eventCheck($eventName)) {
+            throw new EventException(sprintf("Event pause '%s' does not started. Add pause() event", $eventName));
+        }
 
         return $this->stopwatch->unpause($this->getTime(), $eventName);
     }
@@ -172,47 +162,8 @@ class Stopwatch implements StopwatchformatInterface
 
     public function getPrettyPrint()
     {
-        $prettyData = $this->stopwatch->getRawData();
+        $render =new StopwatchRender($this->stopwatchName, $this->stopwatch, $this->getTimeType());
 
-        $duration = $this->getDuration();
-
-        $top = sprintf("┌%s┐\n", str_repeat('─', 139));
-
-
-        $mask = "│ %5.5s | %-30.30s | %-30.30s | %-30.30s | %-30.30s │\n";
-        //$populateData = printf("┌%s┐\n", str_repeat('─', 139));
-        $populateData = $top;
-
-        $populateData .= sprintf($mask, 'Order', 'Consumption time', 'Time', 'Event type', 'Event name');
-        $populateData .= sprintf("├%s┤\n", str_repeat('─', 139));
-
-        foreach ($prettyData as $task => $prettyData) {
-
-            foreach ($prettyData as $time => $arr) {
-
-                if ($arr[0][0] === 'end') {
-                    $populateData .= sprintf($mask, $task, $arr[0][2]['duration'], $time, $arr[0][0], '... ' . $arr[0][1]);
-
-                } else {
-                    $populateData .= sprintf($mask, $task, '', $time, $arr[0][0], '>>> ' . $arr[0][1]);
-
-                }
-
-                $populateData . '┤';
-
-
-            }
-
-        }
-
-        $spacerterm = '└' . sprintf("%s", str_repeat('─', 139)) . '┘' . PHP_EOL;
-
-        $populateData .= $spacerterm . PHP_EOL;
-
-        return <<<EOF
-Stopwatch '$this->stopwatchName': total time ({$this->getTimeTypeValue()}) = $duration, Tasks: {$this->getTaskCount()}
-$populateData
-EOF;
+        return $render->prettyPrint();
     }
-
 }

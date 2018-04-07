@@ -2,6 +2,8 @@
 
 namespace Codervio\Stopwatch;
 
+use Codervio\Stopwatch\Exception\EventException;
+
 class Event
 {
     private $event = array();
@@ -16,6 +18,7 @@ class Event
     {
         $this->taskName = $eventName;
 
+        $this->eventconsume[$eventName]['start'] = $time;
         $this->eventconsume[$eventName]['duration'] = 0;
         $this->eventconsume[$eventName]['type'] = 'runned';
 
@@ -44,6 +47,7 @@ class Event
     {
         $this->event[$eventName]['start'] = $time;
 
+        $this->eventconsume[$eventName]['start'] = $time;
         $this->eventconsume[$eventName]['duration'] = 0;
         $this->eventconsume[$eventName]['type'] = 'pause';
 
@@ -124,6 +128,10 @@ class Event
 
     public function getEvent($eventName)
     {
+        if (!isset($this->eventconsume[$eventName])) {
+            throw new EventException(sprintf('There are no %s event or is not started.', $eventName));
+        }
+
         return new EventConsume($this->eventconsume[$eventName]);
     }
 
