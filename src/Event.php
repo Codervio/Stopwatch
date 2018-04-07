@@ -20,7 +20,7 @@ class Event
         $this->eventconsume[$eventName]['type'] = 'runned';
 
         $this->event[$eventName]['start'] = $time;
-        time_nanosleep(0, 1);
+        $this->setDelayCollision();
 
         return $this;
     }
@@ -47,7 +47,7 @@ class Event
         $this->eventconsume[$eventName]['duration'] = 0;
         $this->eventconsume[$eventName]['type'] = 'pause';
 
-        time_nanosleep(0, 1);
+        $this->setDelayCollision();
 
         return $this;
     }
@@ -65,6 +65,11 @@ class Event
         $this->tasks++;
 
         return $this;
+    }
+
+    private function setDelayCollision() : void
+    {
+        time_nanosleep(0, 1000000);
     }
 
     public function getTaskCount()
