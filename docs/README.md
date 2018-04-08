@@ -26,3 +26,6 @@ Quality assurance: Unit tests provided
 #### References
 
 * [`Stopwatch`](stopwatch_constructor.md) - A stopwatch constructor
+* [`start`](start.md) - Start method for stopwatch timer
+* [`stop`](stop.md) - Stop method for stopwatch timer
+* [`next`](next.md) - Automatically start a new timer measurement

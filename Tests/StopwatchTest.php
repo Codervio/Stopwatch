@@ -86,6 +86,15 @@ class StopwatchTest extends TestCase
         $this->assertEquals(0.01, $stopwatch->getDuration(), null, $this->delta);
     }
 
+    public function testStopwatchWithoutNameStopEvent()
+    {
+        $stopwatch = new Stopwatch();
+
+        $stopwatch->start(__FUNCTION__);
+        usleep(100);
+        $stopwatch->stop();
+    }
+
     public function testStopwatchMills()
     {
         $stopwatch = new Stopwatch(__FUNCTION__, StopwatchformatInterface::MILLISECONDS);
@@ -117,5 +126,34 @@ class StopwatchTest extends TestCase
         $stopwatch->stop(__FUNCTION__);
 
         $this->assertEquals(30163200, $stopwatch->getDuration(), null, (pow(10, $this->delta)));
+    }
+
+    public function testNextMethod()
+    {
+        $stopwatch = new Stopwatch;
+
+        $stopwatch->start('event_1');
+        $stopwatch->next('event2');
+        $stopwatch->next();
+        $stopwatch->next('test');
+        $stopwatch->stop();
+
+        $this->assertEquals(4, $stopwatch->getTaskCount());
+    }
+
+    public function testTaskCount()
+    {
+        $stopwatch = new Stopwatch;
+
+        $stopwatch->start('t1');
+        $stopwatch->stop('t1');
+
+        $stopwatch->start('t2');
+        $stopwatch->stop('t2');
+
+        $stopwatch->start('t3');
+        $stopwatch->stop('t3');
+
+        $this->assertEquals(3, $stopwatch->getTaskCount());
     }
 }

@@ -14,6 +14,10 @@ class Event
 
     private $taskName = null;
 
+    private $triggeredEventType = null;
+
+    private $triggeredEventName = null;
+
     public function start($time, $eventName)
     {
         $this->taskName = $eventName;
@@ -24,6 +28,9 @@ class Event
 
         $this->event[$eventName]['start'] = $time;
         time_nanosleep(0, 1);
+
+        $this->triggeredEventType = __FUNCTION__;
+        $this->triggeredEventName = $eventName;
 
         return $this;
     }
@@ -38,7 +45,10 @@ class Event
         $this->eventconsume[$eventName]['stop'] = $consumption[$eventName]->getStop();
         $this->eventconsume[$eventName]['type'] = 'runned';
 
-        $this->tasks++;
+        ++$this->tasks;
+
+        $this->triggeredEventType = __FUNCTION__;
+        $this->triggeredEventName = $eventName;
 
         return $this;
     }
@@ -53,6 +63,9 @@ class Event
 
         time_nanosleep(0, 1);
 
+        $this->triggeredEventType = __FUNCTION__;
+        $this->triggeredEventName = $eventName;
+
         return $this;
     }
 
@@ -66,9 +79,20 @@ class Event
         $this->eventconsume[$eventName]['stop'] = $consumption[$eventName]->getStop();
         $this->eventconsume[$eventName]['type'] = 'pause';
 
-        $this->tasks++;
+        $this->triggeredEventType = __FUNCTION__;
+        $this->triggeredEventName = $eventName;
+
+        ++$this->tasks;
 
         return $this;
+    }
+
+    public function lastEvent()
+    {
+        return [
+            'type' => $this->triggeredEventType,
+            'name' => $this->triggeredEventName
+        ];
     }
 
     public function getTaskCount()
