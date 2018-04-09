@@ -156,4 +156,19 @@ class StopwatchTest extends TestCase
 
         $this->assertEquals(3, $stopwatch->getTaskCount());
     }
+
+    public function testPauseTask()
+    {
+        $stopwatch = new Stopwatch;
+
+        $stopwatch->start(__FUNCTION__);
+        sleep(1);
+        $stopwatch->pause(__FUNCTION__);
+
+        $stopwatch->pause();
+        usleep(20000);
+        $stopwatch->unpause();
+
+        echo($stopwatch->getDuration());
+    }
 }

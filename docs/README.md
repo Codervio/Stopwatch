@@ -29,3 +29,6 @@ Quality assurance: Unit tests provided
 * [`start`](start.md) - Start method for stopwatch timer
 * [`stop`](stop.md) - Stop method for stopwatch timer
 * [`next`](next.md) - Automatically start a new timer measurement
+* [`pause`](pause.md) - Start freezing timer of stopwatch
+* [`unpause`](unpause.md) - Stop freezing timer of stopwatch
+* [`getDuration`](get_duration.md) - Get a duration time consumption

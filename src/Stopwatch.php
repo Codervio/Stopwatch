@@ -221,9 +221,9 @@ class Stopwatch implements StopwatchformatInterface
 
     public function getDuration($eventName = null)
     {
-        $duration = round($this->stopwatch->getDuration($eventName), 2);
+        $duration = $this->stopwatch->getDuration($eventName);
 
-        return number_format($duration, 0, '.', '');
+        return number_format((float)$duration, 2, '.', '');
     }
 
     public function getTimeBorn()
@@ -233,7 +233,7 @@ class Stopwatch implements StopwatchformatInterface
 
     public function getPrettyPrint()
     {
-        $render =new StopwatchRender($this->stopwatchName, $this->stopwatch, $this->getTimeType());
+        $render = new StopwatchRender($this->stopwatchName, $this->stopwatch, $this->getTimeType());
 
         return $render->prettyPrint();
     }
