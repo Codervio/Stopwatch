@@ -179,6 +179,6 @@ class StopwatchTest extends TestCase
     {
         $stopwatch = new Stopwatch;
 
-        $stopwatch->pause(__FUNCTION__);
+        $stopwatch->unpause(__FUNCTION__);
     }
 }
