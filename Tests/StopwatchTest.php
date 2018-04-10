@@ -171,4 +171,14 @@ class StopwatchTest extends TestCase
 
         echo($stopwatch->getDuration());
     }
+
+    /**
+     * @expectedException Codervio\Stopwatch\Exception\EventException
+     */
+    public function testUnpauseStart()
+    {
+        $stopwatch = new Stopwatch;
+
+        $stopwatch->pause(__FUNCTION__);
+    }
 }

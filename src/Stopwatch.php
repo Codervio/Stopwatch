@@ -195,6 +195,13 @@ class Stopwatch implements StopwatchformatInterface
         }
     }
 
+    /**
+     * Pause an event
+     *
+     * Start freezing event
+     *
+     * @param null|string $eventName
+     */
     public function pause(?string $eventName = null)
     {
         if (is_null($eventName)) {
@@ -206,6 +213,13 @@ class Stopwatch implements StopwatchformatInterface
         $this->stopwatch->pause($this->getTime(), $eventName);
     }
 
+    /**
+     * Unpause event
+     *
+     * Unfreezing stopwatch event
+     *
+     * @param null|string $eventName
+     */
     public function unpause(?string $eventName = null)
     {
         if (is_null($eventName)) {
