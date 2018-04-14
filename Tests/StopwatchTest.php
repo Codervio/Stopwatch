@@ -230,4 +230,14 @@ class StopwatchTest extends TestCase
 
         $this->assertEquals(20, $stopwatch->getDuration('t2'), null, 0.5);
     }
+
+    /**
+     * @expectedException Codervio\Stopwatch\Exception\EventException
+     */
+    public function testUnpauseStart()
+    {
+        $stopwatch = new Stopwatch;
+
+        $stopwatch->unpause(__FUNCTION__);
+    }
 }

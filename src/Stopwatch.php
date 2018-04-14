@@ -202,6 +202,7 @@ class Stopwatch implements StopwatchformatInterface
 
     /**
      * Start freezing timer of stopwatch
+     * Pause an event
      *
      * @param null|string $eventName
      */
@@ -217,10 +218,11 @@ class Stopwatch implements StopwatchformatInterface
     }
 
     /**
-     * Unfreezing stopwatch timer from pause event
+     * Unpause event
+     *
+     * Unfreezing stopwatch event
      *
      * @param null|string $eventName
-     * @return $this
      */
     public function unpause(?string $eventName = null)
     {
