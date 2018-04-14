@@ -18,7 +18,7 @@ class StopwatchTest extends TestCase
 
     protected function setUp()
     {
-        $this->delta = 19;
+        $this->delta = 20;
     }
 
     public function testStartEvent()
@@ -36,6 +36,46 @@ class StopwatchTest extends TestCase
         $stopwatch->stop();
 
         $this->assertTrue($stopwatch->getEvent('event_1')->isStopped());
+    }
+
+    public function testEventDuration()
+    {
+        $stopwatch = new Stopwatch;
+        $stopwatch->start('event_1');
+        usleep(20000);
+        $stopwatch->stop();
+
+        $this->assertEquals(20, $stopwatch->getEvent('event_1')->getDuration(), null, 0.5);
+    }
+
+    public function testEventGettype()
+    {
+        $stopwatch = new Stopwatch;
+        $stopwatch->start('event_1');
+        usleep(20000);
+        $stopwatch->stop();
+
+        $stopwatch->pause('event_2');
+        $stopwatch->unpause();
+
+        $this->assertEquals('runned', $stopwatch->getEvent('event_1')->getType());
+        $this->assertEquals('pause', $stopwatch->getEvent('event_2')->getType());
+    }
+
+    public function testEventGetstart()
+    {
+        $stopwatch = new Stopwatch;
+
+        $started = $stopwatch->start('event_1');
+        usleep(20000);
+        $stopwatch->stop();
+
+        $start = $stopwatch->getEvent('event_1')->getStart();
+
+        $stopwatch->pause('event_2');
+        $stopwatch->unpause();
+
+        $this->assertEquals($start, $stopwatch->getEvent('event_1')->getStart(), null, 100);
     }
 
     /**
@@ -162,13 +202,32 @@ class StopwatchTest extends TestCase
         $stopwatch = new Stopwatch;
 
         $stopwatch->start(__FUNCTION__);
-        sleep(1);
-        $stopwatch->pause(__FUNCTION__);
+        usleep(200000);
+        $stopwatch->stop(__FUNCTION__);
 
         $stopwatch->pause();
-        usleep(20000);
+        usleep(2000);
         $stopwatch->unpause();
 
-        echo($stopwatch->getDuration());
+        $this->assertEquals(200, $stopwatch->getDuration(), null, 0.5);
+    }
+
+    public function testDurationEvent()
+    {
+        $stopwatch = new Stopwatch;
+
+        $stopwatch->start('t1');
+        usleep(10000);
+        $stopwatch->stop('t1');
+
+        $stopwatch->start('t2');
+        usleep(20000);
+        $stopwatch->stop('t2');
+
+        $stopwatch->start('t3');
+        usleep(40000);
+        $stopwatch->stop('t3');
+
+        $this->assertEquals(20, $stopwatch->getDuration('t2'), null, 0.5);
     }
 }

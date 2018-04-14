@@ -32,3 +32,4 @@ Quality assurance: Unit tests provided
 * [`pause`] - Start freezing timer of stopwatch
 * [`unpause`] - Stop freezing timer of stopwatch
 * [`getDuration`] - Get a duration time consumption
+* [`getEvent`] - Fetch event name

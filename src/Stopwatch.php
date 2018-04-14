@@ -74,7 +74,7 @@ class Stopwatch implements StopwatchformatInterface
     }
 
     /**
-     * Fetch event
+     * Fetch event name
      *
      * @param $eventName Name of event
      * @return EventConsume A class returning of event consumption
@@ -177,6 +177,11 @@ class Stopwatch implements StopwatchformatInterface
         return $this->stopwatch->stop($this->getTime(), $eventName);
     }
 
+    /**
+     * Automatically start a new timer measurement
+     *
+     * @param null|string $eventName
+     */
     public function next(?string $eventName = null)
     {
         if (is_null($eventName)) {
@@ -195,6 +200,11 @@ class Stopwatch implements StopwatchformatInterface
         }
     }
 
+    /**
+     * Start freezing timer of stopwatch
+     *
+     * @param null|string $eventName
+     */
     public function pause(?string $eventName = null)
     {
         if (is_null($eventName)) {
@@ -206,6 +216,12 @@ class Stopwatch implements StopwatchformatInterface
         $this->stopwatch->pause($this->getTime(), $eventName);
     }
 
+    /**
+     * Unfreezing stopwatch timer from pause event
+     *
+     * @param null|string $eventName
+     * @return $this
+     */
     public function unpause(?string $eventName = null)
     {
         if (is_null($eventName)) {
@@ -219,6 +235,12 @@ class Stopwatch implements StopwatchformatInterface
         return $this->stopwatch->unpause($this->getTime(), $eventName);
     }
 
+    /**
+     * Measure elapsed stopwatch time
+     *
+     * @param null $eventName
+     * @return string
+     */
     public function getDuration($eventName = null)
     {
         $duration = $this->stopwatch->getDuration($eventName);

@@ -32,3 +32,5 @@ Quality assurance: Unit tests provided
 * [`pause`](pause.md) - Start freezing timer of stopwatch
 * [`unpause`](unpause.md) - Stop freezing timer of stopwatch
 * [`getDuration`](get_duration.md) - Get a duration time consumption
+* [`getEvent`](get_event.md) - Fetch event name
+* [`getId`](get_id.md) - Get Id
