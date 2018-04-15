@@ -1,5 +1,8 @@
 # Stopwatch
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/codervio/stopwatch.svg?style=flat-square)](https://packagist.org/packages/codervio/stopwatch)
+[![Build Status](https://travis-ci.org/Codervio/Stopwatch.svg?branch=master)](https://travis-ci.org/Codervio/Stopwatch)
+
 A `Stopwatch` measures consumption time of executed scripts in micro/nano/mill seconds format. 
 It includes `pause` event to freeze consumption time.
 A stopwatch time can be named as event stopwatch name.
@@ -30,3 +33,16 @@ Quality assurance: Unit tests provided
 * [`unpause`] - Stop freezing timer of stopwatch
 * [`getDuration`] - Get a duration time consumption
 * [`getEvent`] - Fetch event name
+* [`getId`] - Get Id
+* [`getTaskCount`] - Get number of tasks executed
+* [`getTimeBorn`] - Get at least first time executed
+* [`getPrettyPrint`] - Print in a table view rendered stopwatch events
+
+#### GetEvent methods
+
+* [`getDuration`] - Fetch duration of event
+* [`getStart`] - Get time of started event
+* [`getStop`] - Get time of stop event
+* [`getType`] - Get a type of event (run or pause)
+* [`isStopped`] - Check is event stopped
+* [`isStarted`] - Check is event started

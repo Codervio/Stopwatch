@@ -231,13 +231,50 @@ class StopwatchTest extends TestCase
         $this->assertEquals(20, $stopwatch->getDuration('t2'), null, 0.5);
     }
 
-    /**
-     * @expectedException Codervio\Stopwatch\Exception\EventException
-     */
-    public function testUnpauseStart()
+    public function testGetId()
+    {
+        $genid = uniqid();
+
+        $stopwatch = new Stopwatch($genid);
+
+        $id = $stopwatch->getId();
+
+        $this->assertEquals($genid, $id);
+    }
+
+    public function testGetTimeBorn()
     {
         $stopwatch = new Stopwatch;
 
-        $stopwatch->unpause(__FUNCTION__);
+        $stopwatch->start('t1');
+        $stopwatch->stop('t1');
+
+        $stopwatch->start('t2');
+        $stopwatch->stop('t2');
+
+        $getTime = $stopwatch->getTimeBorn();
+        $eventStarted = $stopwatch->getEvent('t1')->getStart();
+
+        $this->assertEquals($eventStarted, $stopwatch->getTimeBorn());
+    }
+
+    public function testGetPrettyPrint()
+    {
+        $stopwatch = new Stopwatch('My stopwatch timer', StopwatchformatInterface::MILLISECONDS);
+
+        $stopwatch->start('t1');
+        $stopwatch->stop('t1');
+
+        $stopwatch->start('t2');
+        $stopwatch->stop('t2');
+
+        $stopwatch->start('pause 1');
+        $stopwatch->stop('pause 1');
+
+        $stopwatch->next();
+
+        $table = $stopwatch->getPrettyPrint();
+
+        $this->assertStringStartsWith('Stopwatch \'My stopwatch timer\': total time (MILLISECONDS) = ', $table);
     }
 }

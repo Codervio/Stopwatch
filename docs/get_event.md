@@ -111,7 +111,7 @@ Result (in ms):
     pause # pause/unpause event_2
 ```
 
-Example #5 Get time of started
+Example #5 Get time of started event
 ```php
     $stopwatch = new Stopwatch;
     

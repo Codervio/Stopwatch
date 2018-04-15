@@ -202,7 +202,6 @@ class Stopwatch implements StopwatchformatInterface
 
     /**
      * Start freezing timer of stopwatch
-     * Pause an event
      *
      * @param null|string $eventName
      */
@@ -218,11 +217,10 @@ class Stopwatch implements StopwatchformatInterface
     }
 
     /**
-     * Unpause event
-     *
-     * Unfreezing stopwatch event
+     * Unfreezing stopwatch timer from pause event
      *
      * @param null|string $eventName
+     * @return $this
      */
     public function unpause(?string $eventName = null)
     {
@@ -250,11 +248,21 @@ class Stopwatch implements StopwatchformatInterface
         return number_format((float)$duration, 2, '.', '');
     }
 
+    /**
+     * Get at least first time executed
+     *
+     * @return mixed
+     */
     public function getTimeBorn()
     {
         return $this->stopwatch->getTimeBorn();
     }
 
+    /**
+     *
+     *
+     * @return string
+     */
     public function getPrettyPrint()
     {
         $render = new StopwatchRender($this->stopwatchName, $this->stopwatch, $this->getTimeType());

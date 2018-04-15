@@ -34,3 +34,15 @@ Quality assurance: Unit tests provided
 * [`getDuration`](get_duration.md) - Get a duration time consumption
 * [`getEvent`](get_event.md) - Fetch event name
 * [`getId`](get_id.md) - Get Id
+* [`getTaskCount`](get_task_count.md) - Get number of tasks executed
+* [`getTimeBorn`](get_time_born.md) - Get at least first time executed
+* [`getPrettyPrint`](get_pretty_print.md) - Print in a table view rendered stopwatch events
+
+#### GetEvent methods
+
+* [`getDuration`](get_event.md) - Fetch duration of event
+* [`getStart`](get_event.md) - Get time of started event
+* [`getStop`](get_event.md) - Get time of stop event
+* [`getType`](get_event.md) - Get a type of event (run or pause)
+* [`isStopped`](get_event.md) - Check is event stopped
+* [`isStarted`](get_event.md) - Check is event started
