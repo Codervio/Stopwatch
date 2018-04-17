@@ -1,5 +1,7 @@
 # Stopwatch
 
+[![Join the chat at https://gitter.im/Codervio/Stopwatch](https://badges.gitter.im/Codervio/Stopwatch.svg)](https://gitter.im/Codervio/Stopwatch?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/codervio/stopwatch.svg?style=flat-square)](https://packagist.org/packages/codervio/stopwatch)
 [![Build Status](https://travis-ci.org/Codervio/Stopwatch.svg?branch=master)](https://travis-ci.org/Codervio/Stopwatch)
 
