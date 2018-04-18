@@ -29,6 +29,7 @@ Quality assurance: Unit tests provided
 
 * [`Stopwatch`] - A stopwatch constructor
 * [`setDriver`] - Set Stopwatch driver type
+* [`getDriverName`] - Get a class name of driver that is using
 * [`start`] - Start method for stopwatch timer
 * [`stop`] - Stop method for stopwatch timer
 * [`next`] - Automatically start a new timer measurement
