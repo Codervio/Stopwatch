@@ -2,7 +2,7 @@
   "name": "codervio/stopwatch",
   "type": "library",
   "description": "Codervio Stopwatch",
-  "keywords": ["stopwatch", "environment", "php", "framework", "dev-tools"],
+  "keywords": ["stopwatch", "environment", "php", "framework", "dev-tools", "hrtime", "microtime"],
   "homepage": "http://codervio.com",
   "license": "MIT",
   "authors": [

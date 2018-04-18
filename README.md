@@ -7,6 +7,7 @@
 A `Stopwatch` measures consumption time of executed scripts in micro/nano/mill seconds format. 
 It includes `pause` event to freeze consumption time.
 A stopwatch time can be named as event stopwatch name.
+Support drivers using HRTime package or native microtime.
 
 ## Installation
 
