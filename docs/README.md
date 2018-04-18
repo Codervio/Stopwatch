@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/codervio/stopwatch.svg?style=flat-square)](https://packagist.org/packages/codervio/stopwatch)
 [![Build Status](https://travis-ci.org/Codervio/Stopwatch.svg?branch=master)](https://travis-ci.org/Codervio/Stopwatch)
+[![Join the chat at https://gitter.im/Codervio/Stopwatch](https://badges.gitter.im/Codervio/Stopwatch.svg)](https://gitter.im/Codervio/Stopwatch?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A `Stopwatch` measures consumption time of executed scripts in micro/nano/mill seconds format. 
 It includes `pause` event to freeze consumption time.
@@ -26,6 +27,7 @@ Quality assurance: Unit tests provided
 #### References
 
 * [`Stopwatch`](stopwatch_constructor.md) - A stopwatch constructor
+* [`setDriver`](set_driver.md) - Set Stopwatch driver type
 * [`start`](start.md) - Start method for stopwatch timer
 * [`stop`](stop.md) - Stop method for stopwatch timer
 * [`next`](next.md) - Automatically start a new timer measurement

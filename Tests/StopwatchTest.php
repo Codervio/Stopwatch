@@ -2,9 +2,13 @@
 
 namespace Codervio\Stopwatch\Tests;
 
+use Codervio\Stopwatch\Drivers\HRTimeDriver;
+use Codervio\Stopwatch\Drivers\UnixDriver;
+use Codervio\Stopwatch\Exception\HRTimeExtension;
 use Codervio\Stopwatch\Stopwatch;
 use Codervio\Stopwatch\StopwatchformatInterface;
 use PHPUnit\Framework\TestCase;
+
 
 /**
  * Stopwatch unit test
@@ -276,5 +280,43 @@ class StopwatchTest extends TestCase
         $table = $stopwatch->getPrettyPrint();
 
         $this->assertStringStartsWith('Stopwatch \'My stopwatch timer\': total time (MILLISECONDS) = ', $table);
+    }
+
+    public function testDriverUnix()
+    {
+        $stopwatch = new Stopwatch();
+
+        $stopwatch->setDriver(new UnixDriver());
+
+        $stopwatch->start('event_1');
+        usleep(20000);
+        $stopwatch->stop();
+
+        $this->assertEquals(20, $stopwatch->getEvent('event_1')->getDuration(), null, 0.5);
+    }
+
+    public function testDriverHRTime()
+    {
+        $stopwatch = new Stopwatch('My stopwatch timer', StopwatchformatInterface::MILLISECONDS);
+
+        $stopwatch->setDriver(new HRTimeDriver());
+
+        $stopwatch->start('event_1');
+        usleep(20000);
+        $stopwatch->stop();
+
+        $stopwatch->pause('event_2');
+        usleep(5000);
+        $stopwatch->unpause();
+
+        $stopwatch->start('event_2');
+        usleep(5000);
+        $stopwatch->stop();
+
+        echo ($stopwatch->getPrettyPrint());
+
+        $this->assertEquals(20000, $stopwatch->getEvent('event_1')->getDuration(), null, 500);
+
+        $this->assertEquals('Codervio\Stopwatch\Drivers\HRTimeDriver', $stopwatch->getDriverName());
     }
 }
